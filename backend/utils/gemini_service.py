@@ -14,7 +14,7 @@ class GeminiService:
         genai.configure(api_key=api_key)
 
         # Stable model for current SDK
-        self.model = genai.GenerativeModel('models/gemini-pro')
+        self.model = genai.GenerativeModel("models/gemini-1.5-flash")
 
     def evaluate_answer(self, student_answer, model_answer, max_marks, question=None):
 
