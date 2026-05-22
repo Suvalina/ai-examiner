@@ -6,14 +6,15 @@ import time
 
 logger = logging.getLogger(__name__)
 
+
 class GeminiService:
 
     def __init__(self, api_key):
 
         genai.configure(api_key=api_key)
 
-        # Better for free tier
-self.model = genai.GenerativeModel('models/gemini-pro')
+        # Stable model for current SDK
+        self.model = genai.GenerativeModel('models/gemini-pro')
 
     def evaluate_answer(self, student_answer, model_answer, max_marks, question=None):
 
@@ -37,6 +38,7 @@ STUDENT'S ANSWER:
 MAXIMUM MARKS: {max_marks}
 
 Provide a comprehensive evaluation in the following JSON format:
+
 {{
     "marks_awarded": <number between 0 and {max_marks}>,
     "percentage": <percentage score>,
@@ -142,6 +144,8 @@ Return ONLY valid JSON.
                     return evaluation
 
                 except Exception as retry_error:
+
+                    logger.error(f"Retry failed: {retry_error}")
 
                     return {
                         "marks_awarded": 0,
