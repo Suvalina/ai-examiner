@@ -7,6 +7,7 @@ import numpy as np
 import logging
 import platform
 import gc
+import time
 import base64
 from io import BytesIO
 
@@ -65,6 +66,7 @@ class PDFProcessor:
                     img_base64 = base64.standard_b64encode(img_byte_arr.getvalue()).decode()
                     
                     # Use Gemini vision to extract text
+                    time.sleep(8)
                     response = gemini_service.model.generate_content([
                         "Extract all text from this image. Include handwritten and typed text. Return ONLY the extracted text, nothing else.",
                         {
