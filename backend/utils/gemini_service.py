@@ -13,7 +13,7 @@ class GeminiService:
         genai.configure(api_key=api_key)
 
         # Better for free tier
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        self.model = genai.GenerativeModel('models/gemini-1.5-flash')
 
     def evaluate_answer(self, student_answer, model_answer, max_marks, question=None):
 
